@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sales Prediction and Ranking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333333;
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #dddddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .chart-container {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .chart {
+            width: 100%;
+            height: 300px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.28.0/dist/apexcharts.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var options = {
+                chart: {
+                    type: 'bar',
+                    height: 300,
+                    width: '100%',
+                    foreColor: '#333333',
+                    toolbar: {
+                        show: false
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        columnWidth: '50%',
+                        endingShape: 'rounded'
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Predicted Sales',
+                    data: [100, 80, 120]
+                }],
+                xaxis: {
+                    categories: ['Product A', 'Product B', 'Product C']
+                },
+                yaxis: {
+                    title: {
+                        text: 'Sales'
+                    }
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector('.chart'), options);
+            chart.render();
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Sales Prediction</h1>
+        <p>Below is the predicted sales data for the products:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Predicted Sales</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Product A</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>Product B</td>
+                    <td>80</td>
+                </tr>
+                <tr>
+                    <td>Product C</td>
+                    <td>120</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h1>Product Ranking</h1>
+        <p>Below is the ranking of products based on sales:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Product</th>
+                    <th>Sales</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>245</td>
+                    <td>120</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>348</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>946</td>
+                    <td>80</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h1>Sales Prediction Chart</h1>
+        <div class="chart-container">
+            <div class="chart"></div>
+        </div>
+    </div>
+</body>
+</html>

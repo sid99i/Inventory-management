@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sales Management Dashboard</title>
+    <style>
+        /* Add your CSS styling here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        section {
+            background-color: #f5f5f5;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        h3 {
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        p {
+            color: #777;
+            font-size: 16px;
+        }
+        .section-tile {
+            display: inline-block;
+            width: calc(33.33% - 20px);
+            margin-right: 20px;
+            margin-bottom: 20px;
+            vertical-align: top;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+        }
+        
+        .section-tile:last-child {
+            margin-right: 0;
+        }
+              .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+      }
+      
+      
+      .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        text-align: center;
+        z-index: 3;
+      }
+      
+      .drawer {
+        position: absolute;
+        top: 50px;
+        left: -240px;
+        height: 100%;
+        background-color: rgba(0, 0, 0);
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: top;
+        justify-content: center;
+        padding: 20px;
+        z-index: 2;
+        transition: left 0.3s ease-out;
+      }
+      
+      .drawer.open {
+        left: 0;
+      }
+      
+      .drawer a {
+        color: #fff;
+        margin: 10px 0;
+        text-decoration: none;
+        font-size: 18px;
+      }
+      
+      .toggle-btn {
+        position: absolute;
+        background-color: (0,0,0);
+        color: (0,0,0,0.7);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        outline: none;
+      }
+      .box {
+        background-color: rgba(0,0, 5);
+        width: 50%;
+        height: 600px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 10px 10px 5px black;
+        z-index: 1;
+      }
+        @media screen and (max-width: 767px) {
+            .section-tile {
+                width: 100%;
+                margin-right: 0;
+            }
+        
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sales Management Dashboard</h1>
+    </header>
+    <header>
+      <button class="toggle-btn" style="position: absolute; top: 10px; right: 20px;">More</button>
+
+    </header>
+    <div class="drawer">
+      <a href="/upl/">Update data</a>
+      <a href="/predict/">Predict using dataset</a>
+      <a href="/reviews/">Reviews and Feedback</a>
+      <a href="/settings/">Setting</a>
+      <a href="/about/">About</a>
+        <a href="/">Log out</a>
+    </div>
+    <section id="sales-overview",class="section-tile">
+        <h2>Sales Overview</h2>
+        <div id="total-revenue">
+            <h3>Total Revenue</h3>
+            <p>$1,234,567</p>
+        </div>
+        <div id="orders-placed">
+            <h3>Number of Orders Placed</h3>
+            <p>567</p>
+        </div>
+        <div id="average-order-value">
+            <h3>Average Order Value</h3>
+            <p>$2,176.56</p>
+        </div>
+        <div id="conversion-rate">
+            <h3>Conversion Rate</h3>
+            <p>3.5%</p>
+        </div>
+    </section>
+    
+    <section id="sales-charts",class="section-tile">
+        <h2>Sales Charts and Graphs</h2>
+        <div id="revenue-chart">
+            <canvas id="revenue-chart-canvas"></canvas>
+        </div>
+        <div id="order-chart">
+            <canvas id="order-chart-canvas"></canvas>
+        </div>
+        <div id="conversion-chart">
+            <canvas id="conversion-chart-canvas"></canvas>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            // Get the canvas elements
+            const revenueChartCanvas = document.getElementById('revenue-chart-canvas');
+            const orderChartCanvas = document.getElementById('order-chart-canvas');
+            const conversionChartCanvas = document.getElementById('conversion-chart-canvas');
+            
+            // Generate random data for demonstration
+            const revenueData = [1000, 2000, 1500, 2500, 1800, 3000];
+            const orderData = [20, 15, 18, 25, 22, 30];
+            const conversionData = [2.5, 3.0, 2.8, 3.2, 2.7, 3.5];
+            
+            // Create revenue chart
+            new Chart(revenueChartCanvas, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Revenue',
+                        data: revenueData,
+                        borderColor: 'rgb(75, 192, 192)',
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+            
+            // Create order chart
+            new Chart(orderChartCanvas, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Orders',
+                        data: orderData,
+                        backgroundColor: 'rgb(54, 162, 235)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+            
+            // Create conversion chart
+            new Chart(conversionChartCanvas, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Conversion Rate',
+                        data: conversionData,
+                        borderColor: 'rgb(255, 99, 132)',
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        </script>
+    </section>
+
+
+    
+    <section id="pipeline",class="section-tile">
+        <h2>Pipeline and Funnel Metrics</h2>
+        <div id="pipeline-chart">
+            <canvas id="pipeline-chart-canvas"></canvas>
+        </div>
+        <div id="funnel-metrics">
+            <h3>Funnel Metrics</h3>
+            <table>
+                <tr>
+                    <th>Stage</th>
+                    <th>Number of Deals</th>
+                    <th>Conversion Rate</th>
+                </tr>
+                <tr>
+                    <td>Prospect</td>
+                    <td>150</td>
+                    <td>30%</td>
+                </tr>
+                <tr>
+                    <td>Qualified Lead</td>
+                    <td>100</td>
+                    <td>50%</td>
+                </tr>
+                <tr>
+                    <td>Negotiation</td>
+                    <td>50</td>
+                    <td>70%</td>
+                </tr>
+                <tr>
+                    <td>Closed</td>
+                    <td>30</td>
+                    <td>90%</td>
+                </tr>
+            </table>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            // Get the canvas element
+            const pipelineChartCanvas = document.getElementById('pipeline-chart-canvas');
+            
+            // Generate random data for demonstration
+            const stages = ['Prospect', 'Qualified Lead', 'Negotiation', 'Closed'];
+            const dealCounts = [150, 100, 50, 30];
+            const conversionRates = [30, 50, 70, 90];
+            
+            // Create pipeline chart
+            new Chart(pipelineChartCanvas, {
+                type: 'bar',
+                data: {
+                    labels: stages,
+                    datasets: [{
+                        label: 'Number of Deals',
+                        data: dealCounts,
+                        backgroundColor: 'rgb(75, 192, 192)'
+                    }, {
+                        label: 'Conversion Rate',
+                        data: conversionRates,
+                        backgroundColor: 'rgb(255, 99, 132)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+    </section>
+
+    
+    <section id="sales-by-region",class="section-tile">
+        <h2>Sales by Region or Territory</h2>
+        <div id="sales-by-region-chart">
+            <canvas id="sales-by-region-chart-canvas"></canvas>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            // Generate random data for demonstration
+            const regionLabels = ['Region A', 'Region B', 'Region C', 'Region D', 'Region E'];
+            const salesData = [5000, 8000, 6500, 4500, 7000];
+            
+            // Create sales by region chart
+            new Chart(document.getElementById('sales-by-region-chart-canvas'), {
+                type: 'bar',
+                data: {
+                    labels: regionLabels,
+                    datasets: [{
+                        label: 'Sales',
+                        data: salesData,
+                        backgroundColor: 'rgb(54, 162, 235)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+    </section>
+
+    <section id="sales-forecasting",class="section-tile">
+        <h2>Sales Forecasting</h2>
+        <div id="sales-forecast-chart">
+            <canvas id="sales-forecast-chart-canvas"></canvas>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            // Generate random data for demonstration
+            const forecastLabels = ['Q1', 'Q2', 'Q3', 'Q4'];
+            const forecastData = [50000, 60000, 70000, 55000];
+            
+            // Create sales forecast chart
+            new Chart(document.getElementById('sales-forecast-chart-canvas'), {
+                type: 'line',
+                data: {
+                    labels: forecastLabels,
+                    datasets: [{
+                        label: 'Sales Forecast',
+                        data: forecastData,
+                        borderColor: 'rgb(54, 162, 235)',
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+    </section>
+    
+        
+    <section id="customer-analytics",class="section-tile">
+        <h2>Customer Analytics</h2>
+        <div id="customer-analytics-chart">
+            <canvas id="customer-analytics-chart-canvas"></canvas>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            // Generate random data for demonstration
+            const analyticsLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+            const newCustomersData = [10, 15, 12, 8, 20, 18];
+            const returningCustomersData = [8, 12, 10, 14, 10, 15];
+            
+            // Create customer analytics chart
+            new Chart(document.getElementById('customer-analytics-chart-canvas'), {
+                type: 'line',
+                data: {
+                    labels: analyticsLabels,
+                    datasets: [{
+                        label: 'New Customers',
+                        data: newCustomersData,
+                        borderColor: 'rgb(54, 162, 235)',
+                        fill: false
+                    }, {
+                        label: 'Returning Customers',
+                        data: returningCustomersData,
+                        borderColor: 'rgb(255, 99, 132)',
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+    </section>
+    
+        
+    <section id="alerts-notifications",class="section-tile">
+        <h2>Alerts/Notifications</h2>
+        <div id="notifications-container"></div>
+        <script>
+            // Sample data for demonstration
+            const notifications = [
+                { id: 1, message: 'New order received', type: 'info' },
+                { id: 2, message: 'Low inventory alert', type: 'warning' },
+                { id: 3, message: 'Payment overdue for invoice #123', type: 'error' },
+            ];
+            
+            // Function to display notifications
+            function displayNotifications() {
+                const container = document.getElementById('notifications-container');
+                
+                // Clear existing notifications
+                container.innerHTML = '';
+                
+                // Generate HTML for each notification
+                for (let i = 0; i < notifications.length; i++) {
+                    const notification = notifications[i];
+                    const notificationElement = document.createElement('div');
+                    notificationElement.className = 'notification ' + notification.type;
+                    notificationElement.innerHTML = notification.message;
+                    container.appendChild(notificationElement);
+                }
+            }
+            
+            // Call the function to initially display notifications
+            displayNotifications();
+            
+            // Simulate adding a new notification
+            setTimeout(function() {
+                const newNotification = { id: 4, message: 'Important update: Sales meeting rescheduled', type: 'info' };
+                notifications.push(newNotification);
+                displayNotifications();
+            }, 3000);
+        </script>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 IMS. All rights reserved.</p>
+    </footer>
+</body>
+  <script>
+    const toggleBtn = document.querySelector('.toggle-btn');
+    const drawer = document.querySelector('.drawer');
+
+    toggleBtn.addEventListener('click', () => {
+    drawer.classList.toggle('open');
+    toggleBtn.style.backgroundColor = toggleBtn.style.backgroundColor === 'black' ? 'white' : 'black';
+    toggleBtn.style.color = toggleBtn.style.color === 'white' ? 'black' : 'white';
+  });
+  </script>
+</html>

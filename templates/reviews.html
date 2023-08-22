@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Reviews</title>
+    <style>
+        /* Add your CSS styling here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f2f2f2; /* Set the background color */
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+            color: white; /* Set the header color */
+            background-color: black;
+  
+        }
+        
+        .review {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff; /* Set the review background color */
+        }
+        
+        .review .author {
+            font-weight: bold;
+        }
+        
+        .review .date {
+            font-style: italic;
+            color: #777;
+        }
+        
+        .review .content {
+            margin-top: 10px;
+        }
+        
+        .add-review-form {
+            margin-top: 20px;
+        }
+        
+        .add-review-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .add-review-form textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        
+        .add-review-form input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .add-review-form input[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Product Reviews</h1>
+    
+    <div class="review">
+        <div class="author">John Doe</div>
+        <div class="date">June 1, 2023</div>
+        <div class="content">
+            This product is amazing! It exceeded my expectations in terms of quality and performance.
+            Highly recommended!
+        </div>
+    </div>
+    
+    <div class="review">
+        <div class="author">Jane Smith</div>
+        <div class="date">June 5, 2023</div>
+        <div class="content">
+            I'm really satisfied with this product. It's worth every penny. The customer service was also excellent.
+        </div>
+    </div>
+    
+    <div class="review">
+        <div class="author">Mike Johnson</div>
+        <div class="date">June 10, 2023</div>
+        <div class="content">
+            The product arrived on time and in perfect condition. I'm very happy with my purchase.
+        </div>
+    </div>
+    <div class="review">
+    <div class="author">Sarah Thompson</div>
+    <div class="date">June 15, 2023</div>
+    <div class="content">
+        I bought this product as a gift for my friend, and she absolutely loved it! The quality is top-notch.
+        I'm considering getting one for myself now.
+    </div>
+    </div>
+    
+    <div class="review">
+        <div class="author">David Wilson</div>
+        <div class="date">June 20, 2023</div>
+        <div class="content">
+            This is the best product I've ever purchased! It has made my life so much easier. I can't recommend it enough.
+        </div>
+    </div>
+    
+    <div class="review">
+        <div class="author">Emily Davis</div>
+        <div class="date">June 25, 2023</div>
+        <div class="content">
+            I had some initial doubts about this product, but after using it for a while, I'm impressed.
+            It's durable, efficient, and stylish. Thumbs up!
+        </div>
+    </div>
+    <div class="review">
+    <div class="author">John Smith</div>
+    <div class="date">June 12, 2023</div>
+    <div class="content">
+        I've been using this product for a month now, and it has exceeded my expectations.
+        It's user-friendly, reliable, and provides great value for the price.
+        I highly recommend it to anyone in need of a quality product.
+    </div>
+</div>
+
+<div class="review">
+    <div class="author">Jessica Johnson</div>
+    <div class="date">June 18, 2023</div>
+    <div class="content">
+        This product has changed the way I work. It's efficient, well-designed, and has improved my productivity.
+        The customer support team is also very responsive and helpful.
+        I'm extremely satisfied with my purchase.
+    </div>
+</div>
+
+<div class="review">
+    <div class="author">Michael Brown</div>
+    <div class="date">June 22, 2023</div>
+    <div class="content">
+        I bought this product after reading positive reviews, and it didn't disappoint.
+        The quality is excellent, and it performs exactly as described.
+        I'm glad I made this purchase and would buy from this brand again.
+    </div>
+</div>
+
+    
+    <div class="add-review-form">
+        <h2>Add a Review</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="rating">Rating:</label>
+            <select id="rating" name="rating" required>
+                <option value="5">5 stars</option>
+                <option value="4">4 stars</option>
+                <option value="3">3 stars</option>
+                <option value="2">2 stars</option>
+                <option value="1">1 star</option>
+            </select>
+            
+            <label for="review">Review:</label>
+            <textarea id="review" name="review" required></textarea>
+            
+            <input type="submit" value="Submit Review">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+      }
+      
+      video {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%; 
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -100;
+      }
+      
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+      }
+      
+      header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        background-color: rgba(0,0,0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px;
+        z-index: 2;
+      }
+      
+      .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        text-align: center;
+        z-index: 3;
+      }
+      
+      .drawer {
+        position: absolute;
+        top: 50px;
+        left: -200px;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: top;
+        justify-content: center;
+        padding: 20px;
+        z-index: 2;
+        transition: left 0.3s ease-out;
+      }
+      
+      .drawer.open {
+        left: 0;
+      }
+      
+      .drawer a {
+        color: #fff;
+        margin: 10px 0;
+        text-decoration: none;
+        font-size: 18px;
+      }
+      
+      .toggle-btn {
+        position: absolute;
+        background-color: (0,0,0);
+        color: (0,0,0,0.7);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        outline: none;
+      }
+      .box {
+        background-color: rgba(0,0, 5, 0.5);
+        width: 50%;
+        height: 600px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 10px 10px 5px black;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <video autoplay loop muted>
+      <source src={{ url_for('static', filename="video.mp4") }} type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="overlay"></div>
+    
+    <header>
+      <button class="toggle-btn" style="position: absolute; top: 10px; right: 20px;">More</button>
+
+    </header>
+    
+    <div class="drawer">
+      <a href="/log/">Login</a>
+      <a href="/about/">About</a>
+    </div>
+    <div class="box" style="width: 90%;">
+      <div class="content" style="width: 65%;">
+        <h2>Inventory Management using Machine Learning</h2>
+        <div style="float: left; width: 60%;">
+          <p style="text-align: left;">
+            Inventory management is the process of overseeing and controlling the flow of goods in an organization. Machine learning has revolutionized this process by providing advanced algorithms that can analyze vast amounts of data in real-time and make accurate predictions about inventory levels, demand patterns, and other factors that impact inventory management.
+  
+            One of the key benefits of using machine learning in inventory management is improved accuracy in demand forecasting. Traditional methods of demand forecasting often rely on historical data and are subject to biases and errors. Machine learning algorithms, on the other hand, can analyze a much larger and more diverse set of data and make more accurate predictions about future demand.
+  
+            Another important benefit of using machine learning in inventory management is improved efficiency. Machine learning algorithms can help organizations optimize their inventory levels by predicting demand, reducing overstocking and stock shortages, and minimizing waste. This can result in significant cost savings for organizations and can help improve customer satisfaction by reducing out-of-stock situations.
+  
+            In conclusion, the integration of machine learning into inventory management is an important step towards modernizing and optimizing this critical business process. By leveraging the power of data and advanced algorithms, organizations can gain a competitive advantage and drive greater success.
+                  </p>
+        </div>
+        <div style="float: right; width: 40%;">
+          <img src={{ url_for('static', filename="image2.jpg") }} style="width: 140%;">
+          
+        </div>
+      </div>
+    </div>
+
+  </body>
+  <script>
+    const toggleBtn = document.querySelector('.toggle-btn');
+    const drawer = document.querySelector('.drawer');
+
+    toggleBtn.addEventListener('click', () => {
+    drawer.classList.toggle('open');
+    toggleBtn.style.backgroundColor = toggleBtn.style.backgroundColor === 'black' ? 'white' : 'black';
+    toggleBtn.style.color = toggleBtn.style.color === 'white' ? 'black' : 'white';
+  });
+  </script>
+  
+</html>

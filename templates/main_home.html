@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+
+            .dropbtn {
+            background-color:transparent;
+            color: rgb(71, 171, 237);
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            }
+            .dropdown {
+            position: relative;
+            display: inline-block;
+            }
+            .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            }
+            .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            }
+            .dropdown-content a:hover {background-color: #ddd;}
+            .dropdown:hover .dropdown-content {display: block;}.dropdown:hover .dropbtn {background-color: #c7f3f8;}
+            .title{
+                position: absolute;
+                left:200px;
+            }
+            #a{
+                position: absolute;
+                top:52px;
+            }
+        </style>
+    </head>
+    <body>
+    <style>
+        .rw-conversation-container .rw-header{background-color:rgb(52, 193, 218);}
+        .rw-conversation-container .rw-messages-container .rw-message .rw-response{background-color:rgb(196, 236, 243);}
+        body{
+            background-image: url("https://cdn.suwalls.com/wallpapers/cartoons/baymax-big-hero-6-35056-1920x1080.jpg");
+            background-size: 1800px;
+        }
+    </style>
+        <div class="dropdown">
+            <button class="dropbtn"><i class="fa fa-bars"> </i></button>
+            <div class="dropdown-content">
+              <a href="/chatbot/">DIY</a>
+              <a href="/camera/">Emotion Detect</a>
+              <a href="#">About Us</a>
+            </div>
+        </div>
+        <div class="title">
+            <p style="color:rgb(255, 144, 52);font-size:35px"><b>MENTAL HEALTH BOT</b></p>
+            <p style="color:rgb(63, 184, 236);font-style:italic;font-size:18px;" id="a"><b>It matter's the most</b></p>
+        </div>
+        <script>!(function () {
+            let e = document.createElement("script"),
+              t = document.head || document.getElementsByTagName("head")[0];
+            (e.src =
+              "https://cdn.jsdelivr.net/npm/rasa-webchat@1.x.x/lib/index.js"),
+              // Replace 1.x.x with the version that you want
+              (e.async = !0),
+              (e.onload = () => {
+                window.WebChat.default(
+                  {
+                    initPayload:'/greet',
+                    customData: { language: "en" },
+                    socketUrl: "http://localhost:5005",
+                    title:'Mental health assistance bot',
+                    subtitle: 'Say hi and get started!'
+                  },
+                  null
+                );
+              }),
+              t.insertBefore(e, t.firstChild);
+          })();
+          </script>
+    </body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ML Prediction Dashboard</title>
+    <style>
+        /* Add your CSS styling here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        
+        header {
+            background-image: linear-gradient(to right, #333, #555);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        select, input[type="file"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        /* Add custom images and patterns here */
+        #data-selection {
+            background-image: url('file_selection_bg.jpg');
+            background-size: cover;
+        }
+        
+        #model-selection {
+            background-image: linear-gradient(to bottom right, #ffa500, #ffd700);
+        }
+        
+        #visualization-options {
+            background-image: radial-gradient(circle at top left, #00bfff, #1e90ff);
+        }
+        
+        #prediction-algorithm {
+            background-image: repeating-linear-gradient(to bottom, #ff00ff, #ff69b4 10%, #ffc0cb 20%);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ML Prediction</h1>
+    </header>
+    
+    <section id="data-selection">
+        <h2>Data Selection</h2>
+        <label for="file">Select a File:</label>
+        <input type="file" id="file" name="file" accept=".csv, .xlsx">
+    </section>
+    
+    <section id="model-selection">
+        <h2>Model Selection</h2>
+        <label for="model">Select an ML Model:</label>
+        <select id="model" name="model">
+            <option value="model1">XGBoost</option>
+            <option value="model2">Linear Regression</option>
+            <option value="model3">Time series</option>
+        </select>
+    </section>
+    
+    <section id="visualization-options">
+        <h2>Visualization Options</h2>
+        <label for="graphs">Graphs:</label>
+        <select id="graphs" name="graphs" multiple>
+            <option value="Box Chart">Box Chart</option>
+            <option value="Line Chart">Line Chart</option>
+            <option value="Area Chart">Area Chart</option>
+        </select>
+        
+        <label for="tables">Tables:</label>
+        <select id="tables" name="tables" multiple>
+            <option value="ranking according to sales">Ranking highest sales</option>
+            <option value="Sales comparision">Sales comparision</option>
+        </select>
+    </section>
+    
+    <section id="prediction-algorithm">
+        <h2>Prediction Algorithm</h2>
+        <label for="algorithm">Select a Prediction Algorithm:</label>
+        <select id="algorithm" name="algorithm">
+            <option value="Time Series Forecasting">Time Series Forecasting</option>
+            <option value="Regression-based Methods">Regression-based Methods</option>
+        </select>
+    </section>
+    
+    <section id="submit-button">
+        <a href="/loading/"><button type="submit">Submit</button></a>
+    </section>
+
+    <footer>
+        <!-- Add your footer content here -->
+        <p>&copy; 2023 IMS. All rights reserved.</p>
+    </footer>
+</body>
+</html>

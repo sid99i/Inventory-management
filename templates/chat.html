@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        background-color: #333333;
+      }
+      .header {
+        width: 100%;
+        background-color: #4A90E2;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        font-size: 24px;
+      }
+      .chat-container {
+        width: 80%;
+        height: 80%;
+        background-color: #474747;
+        overflow: auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .message {
+        background-color: #F2F2F2;
+        color: #4A4A4A;
+        padding: 10px 20px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        max-width: 60%;
+      }
+      .message.user {
+        background-color: #4A90E2;
+        color: white;
+        align-self: flex-end;
+      }
+      .input-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+      }
+      .input-field {
+        width: 80%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #E5E5E5;
+        font-size: 16px;
+        background-color: #474747;
+        color: white;
+      }
+      .send-button {
+        width: 20%;
+        background-color: #4A90E2;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">Chatbot</div>
+    <div class="chat-container" id="chatContainer">
+
+    </div>
+    <div class="input-container">
+        <input type="text" class="input-field" id="inputField" placeholder="Type your message here...">
+        <button class="send-button" id="sendButton">Send</button>
+    </div>
+</div>
+<script>
+        const sendButton = document.getElementById("sendButton");
+        const inputField = document.getElementById("inputField");
+        const chatContainer = document.getElementById("chatContainer");
+
+        sendButton.addEventListener("click", function() {
+          const userMessage = inputField.value;
+          if (!userMessage) return;
+
+          const messageContainer = document.createElement("div");
+          messageContainer.classList.add("message");
+          messageContainer.classList.add("user");
+          messageContainer.textContent = userMessage;
+
+          chatContainer.appendChild(messageContainer);
+          inputField.value = "";
+
+          fetch("http://127.0.0.1:5000/get_response", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              user_message: userMessage
+            })
+          })
+            .then(response => response.json())
+            .then(data => {
+              const botMessageContainer = document.createElement("div");
+              botMessageContainer.classList.add("message");
+              botMessageContainer.textContent = data.bot_response;
+
+              chatContainer.appendChild(botMessageContainer);
+            })
+            .catch(error => console.error(error));
+        });
+
+    </script>
+  </body>
+</html>
+
